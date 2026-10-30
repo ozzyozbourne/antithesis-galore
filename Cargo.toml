@@ -1,0 +1,15 @@
+[package]
+name = "detvisor"
+version = "0.1.0"
+edition = "2021"
+description = "A teaching prototype of an Antithesis-style deterministic simulation 'hypervisor'"
+
+[features]
+# Run the real Turso storage engine as a guest (heavy build).
+turso = ["dep:turso_core"]
+
+[dependencies]
+turso_core = { git = "https://github.com/tursodatabase/turso", rev = "584e46a89a216c92f637c6736d895ebc472a7cf2", optional = true, default-features = false, features = ["fs"] }
+
+[profile.release]
+debug = "line-tables-only"
